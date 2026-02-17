@@ -45,9 +45,6 @@ type licenseData struct {
 // This implementation uses GitHub Gists or a custom endpoint to validate licenses
 func (p *Provider) Validate(ctx context.Context, licenseKey string) (*license.ValidationResult, error) {
 	// For GitHub implementation, we could use GitHub Gists or a custom API endpoint
-	// This is a simplified example that would need to be adapted to your specific setup
-	
-	// For GitHub implementation, we could use GitHub Gists or a custom API endpoint
 	// This is a simplified mock implementation
 	_ = p.getBaseURL()
 
