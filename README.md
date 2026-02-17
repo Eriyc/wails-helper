@@ -29,6 +29,10 @@ The library is built around a provider pattern that allows you to plug in differ
 - Implement custom license validation logic
 - Extend functionality with your own providers
 
+### Roadmap
+
+- [v0.1 Proposal](docs/v0.1-proposal.md)
+
 ### Package Structure
 
 ```
@@ -89,13 +93,13 @@ func main() {
 
     // Use the helper
     ctx := context.Background()
-    
+
     // Check for updates
     updateInfo, err := h.CheckForUpdates(ctx)
     if err != nil {
         // handle error
     }
-    
+
     if updateInfo.Available {
         // New version available!
     }
@@ -130,7 +134,7 @@ if updateInfo.Available {
         // handle error
     }
     defer reader.Close()
-    
+
     // Process the update...
 }
 
@@ -348,6 +352,7 @@ func (p *MyLicenseProvider) RefreshLicense(ctx context.Context, licenseKey strin
 Your custom update server should implement these endpoints:
 
 #### Check for Updates
+
 ```
 GET /api/updates/check?version=1.0.0
 Response: {
@@ -364,6 +369,7 @@ Response: {
 ```
 
 #### Get Version History
+
 ```
 GET /api/updates/history?limit=10
 Response: [
@@ -381,6 +387,7 @@ Response: [
 Your custom license server should implement these endpoints:
 
 #### Validate License
+
 ```
 POST /api/licenses/validate
 Body: {"license_key": "..."}
@@ -392,6 +399,7 @@ Response: {
 ```
 
 #### Activate License
+
 ```
 POST /api/licenses/activate
 Body: {
@@ -402,6 +410,7 @@ Body: {
 ```
 
 #### Deactivate License
+
 ```
 POST /api/licenses/deactivate
 Body: {
@@ -411,12 +420,14 @@ Body: {
 ```
 
 #### Check Feature
+
 ```
 GET /api/licenses/features?license_key=...&feature=premium
 Response: {"enabled": true}
 ```
 
 #### Refresh License
+
 ```
 GET /api/licenses/{license_key}
 Response: {
@@ -429,6 +440,12 @@ Response: {
 ## Integrating with Wails3
 
 To fully integrate with Wails3, you'll need to implement the `window.Manager`, `dialog.Manager`, and `events.Manager` interfaces using Wails3's native APIs. These implementations will wrap Wails3 functionality and expose it through the helper's clean interface.
+
+Pin the Wails3 CLI to the supported version:
+
+```bash
+go install github.com/wailsapp/wails/v3/cmd/wails3@v3.0.0-alpha.72
+```
 
 Example skeleton:
 
