@@ -111,7 +111,7 @@ func (p *Provider) VerifyUpdate(ctx context.Context, data io.Reader, version *au
 	}
 	// TODO: Implement checksum verification
 	// For now, return an error to indicate this feature is not yet implemented
-	return fmt.Errorf("checksum verification not yet implemented for checksum: %s", version.Checksum)
+	return fmt.Errorf("checksum verification not yet implemented")
 }
 
 // GetVersionHistory retrieves the version history from the custom server
